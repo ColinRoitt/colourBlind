@@ -49,7 +49,7 @@ router.get('/:colourType/:fileName', function (req, res) {
                     return res.status(500).json(err);
 
                 for (let x = 0; x <= width; x++) {
-                    for (let y = 0; y <= width; y++) {
+                    for (let y = 0; y <= height; y++) {
                         let startingColour = `#${img.getPixelColor(x, y).toString(16)}`.slice(0, -2);
                         let convertedColour = '';
                         convertedColour = Jimp.cssColorToHex(func(startingColour));
