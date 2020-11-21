@@ -5,11 +5,18 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const fileUpload = require('express-fileupload');
 var sassMiddleware = require('node-sass-middleware');
+var fs = require('fs');
+var dir = './USER_UPLOADS';
+
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir);
+}
 
 var indexRouter = require('./routes/index');
 var uploadRouter = require('./routes/upload');
 var convertRouter = require('./routes/convert');
 var deleteRouter = require('./routes/delete');
+
 
 var app = express();
 
