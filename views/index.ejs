@@ -103,12 +103,6 @@
       let file = document.getElementById('file').files[0];
       formData.append("sampleFile", file);
 
-      let reader = new FileReader()
-      reader.addEventListener("load", () => {
-        document.querySelector('#orig').src = reader.result;
-      }, false);
-      reader.readAsDataURL(file);
-
       fetch("/upload", {
         body: formData,
         method: "post"
@@ -119,6 +113,7 @@
             if (pathJson.status != 'success') {
               document.querySelector('.error').hidden = false;
             }
+            document.querySelector('#orig').src = pathJson.original;
             document.querySelector('#form').hidden = true;
             document.querySelector(`.cont`).hidden = false;
             document.querySelectorAll('.output').forEach(el => {

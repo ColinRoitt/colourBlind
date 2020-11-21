@@ -1,4 +1,5 @@
 var express = require('express');
+var Jimp = require('jimp');
 var router = express.Router();
 
 router.post('/', function (req, res) {
@@ -8,19 +9,54 @@ router.post('/', function (req, res) {
 
   let sampleFile = req.files.sampleFile;
   let timestamp = Date.now();
+  let fileName = `${'.'}/USER_UPLOADS/${timestamp}.jpg`;
 
-  sampleFile.mv(`${'.'}/USER_UPLOADS/${timestamp}.jpg`, function (err) {
+  sampleFile.mv(fileName, (err) => {
     if (err) {
       console.log(err);
       return res.status(500).send(err);
     }
 
-    output = {
-      'status': 'success',
-      'name': timestamp,
-      'path': `${timestamp}.jpg`
-    }
-    res.json(output);
+    new Jimp(fileName, (err, img) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send(err);
+      }
+
+      //do some maths
+      let oldWidth = img.getWidth();
+      let oldHeight = img.getHeight();
+      let max = 500;
+      let newWidth = oldWidth;
+      let newHeight = oldHeight;
+
+      if (oldWidth > max) {
+        newWidth = max;
+        newHeight = newWidth * oldHeight / oldWidth;
+      } else if (oldHeight > max) {
+        newHeight = max;
+        newWidth = newHeight * oldWidth / oldHeight;
+      }
+      console.log([oldHeight, oldWidth])
+      console.log([newHeight, newWidth])
+
+
+      img.resize(newWidth, newHeight, _ => {
+        img.writeAsync(fileName)
+          .then(_ => {
+            img.getBase64Async(Jimp.AUTO)
+              .then(img => {
+                res.json({
+                  'status': 'success',
+                  'name': timestamp,
+                  'path': `${timestamp}.jpg`,
+                  'original': img
+                });
+              });
+          });
+      })
+
+    });
   });
 });
 
