@@ -116,6 +116,9 @@
       ).then((pathData) => {
         pathData.json()
           .then(pathJson => {
+            if (pathJson.state != 'success') {
+              return console.log('Failed')
+            }
             document.querySelector(`.cont`).hidden = false;
             document.querySelectorAll('.output').forEach(el => {
               fetch(`/convert/${el.id}/${pathJson.path}`).then(image => {
