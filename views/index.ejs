@@ -4,45 +4,7 @@
 <head>
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-
-    img {
-      max-width: 500px;
-    }
-
-    .cont {
-      display: flex;
-      flex-wrap: wrap;
-      text-align: center;
-      align-items: center;
-    }
-
-    .preview {
-      padding: 20px;
-    }
-
-    #form_loading {
-      width: 100px;
-    }
-
-    @media only screen and (max-width: 900px) {
-      img {
-        max-width: 90vw;
-      }
-
-      .cont {
-        align-items: center;
-      }
-    }
-
-    [hidden] {
-      display: none;
-    }
-  </style>
+  <script src='/javascripts/index.js' defer></script>
 </head>
 
 <body>
@@ -105,42 +67,6 @@
   </div>
 
   <div hidden class='error'>Error: Cannot connect to server</div>
-
-  <script>
-    document.getElementById('upload').addEventListener('click', (e) => {
-      e.preventDefault();
-      document.querySelector('.form_loading').hidden = false;
-
-      let formData = new FormData();
-      let file = document.getElementById('file').files[0];
-      formData.append("sampleFile", file);
-
-      fetch("/upload", {
-        body: formData,
-        method: "post"
-      }
-      ).then((pathData) => {
-        pathData.json()
-          .then(pathJson => {
-            if (pathJson.status != 'success') {
-              document.querySelector('.error').hidden = false;
-            }
-            document.querySelector('#orig').src = pathJson.original;
-            document.querySelector('#form').hidden = true;
-            document.querySelector(`.cont`).hidden = false;
-            document.querySelectorAll('.output').forEach(el => {
-              fetch(`/convert/${el.id}/${pathJson.path}`).then(image => {
-                image.json()
-                  .then(imageJson => {
-                    el.setAttribute('src', imageJson);
-                    fetch(`/delete/${pathJson.path}`);
-                  });
-              });
-            });
-          });
-      });
-    });
-  </script>
 </body>
 
 </html>
