@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    img {
+      max-width: 500px;
+    }
+
+    .cont {
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      align-items: center;
+    }
+
+    @media only screen and (max-width: 900px) {
+      img {
+        max-width: 90vw;
+      }
+
+      .cont {
+        align-items: center;
+      }
+    }
+
+    [hidden] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+  <form id='form' ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
+    <input id='file' type="file" name="sampleFile" />
+    <input id='upload' type='submit' value='Upload' />
+  </form>
+
+  <br />
+
+  <div hidden class='cont'>
+    <div class='preview' id='original'>
+      <h3>Original</h3>
+      <img id='orig'></img>
+    </div>
+
+    <div class='preview' id='original'>
+      <h3>Protanomaly</h3>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="protanomaly"></img>
+    </div>
+
+    <div class='preview' id='original'>
+      <h3>Protanopia</h3>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="protanopia"></img>
+    </div>
+
+    <div class='preview' id='original'>
+      <h3>Deuteranomaly</h3>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="deuteranomaly"></img>
+    </div>
+
+    <div class='preview' id='original'>
+      <h3>Deuteranopia</h3>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="deuteranopia"></img>
+    </div>
+
+    <div class='preview' id='original'>
+      <h3>Tritanomaly</h3>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="tritanomaly"></img>
+    </div>
+
+    <div class='preview' id='original'>
+      <h3>Tritanopia</h3>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="tritanopia"></img>
+    </div>
+
+    <div class='preview' id='original'>
+      <h3>Achromatomaly</h3>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="achromatomaly"></img>
+    </div>
+
+    <div class='preview' id='original'>
+      <h3>Achromatopsia</h3>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="achromatopsia"></img>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('upload').addEventListener('click', (e) => {
+      e.preventDefault();
+      let formData = new FormData();
+      let file = document.getElementById('file').files[0];
+      formData.append("sampleFile", file);
+
+      let reader = new FileReader()
+      reader.addEventListener("load", () => {
+        document.querySelector('#orig').src = reader.result;
+      }, false);
+      reader.readAsDataURL(file);
+
+      document.querySelector('#form').hidden = true;
+
+      fetch("/upload", {
+        body: formData,
+        method: "post"
+      }
+      ).then((pathData) => {
+        pathData.json()
+          .then(pathJson => {
+            document.querySelector(`.cont`).hidden = false;
+            document.querySelectorAll('.output').forEach(el => {
+              fetch(`/convert/${el.id}/${pathJson.path}`).then(image => {
+                image.json()
+                  .then(imageJson => {
+                    el.setAttribute('src', imageJson);
+                    fetch(`/delete/${pathJson.path}`);
+                  });
+              });
+            });
+          });
+      });
+    });
+  </script>
+</body>
+
+</html>
