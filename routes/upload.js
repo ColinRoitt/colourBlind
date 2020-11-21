@@ -37,9 +37,6 @@ router.post('/', function (req, res) {
         newHeight = max;
         newWidth = newHeight * oldWidth / oldHeight;
       }
-      console.log([oldHeight, oldWidth])
-      console.log([newHeight, newWidth])
-
 
       img.resize(newWidth, newHeight, _ => {
         img.writeAsync(fileName)
