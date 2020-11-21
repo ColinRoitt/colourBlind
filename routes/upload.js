@@ -12,8 +12,10 @@ router.post('/', function (req, res) {
 
   // Use the mv() method to place the file somewhere on your server
   sampleFile.mv(`${'.'}/USER_UPLOADS/${timestamp}.jpg`, function (err) {
-    if (err)
+    if (err) {
+      console.log(err);
       return res.status(500).send(err);
+    }
 
     output = {
       'status': 'success',
