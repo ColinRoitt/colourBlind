@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./www"
+    "start": "node ./www",
+    "serve": "nodemon ./www"
   },
   "dependencies": {
     "color-blind": "^0.1.1",
