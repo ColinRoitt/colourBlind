@@ -94,6 +94,8 @@
     </div>
   </div>
 
+  <div hidden class='error'>Error: Cannot connect to server</div>
+
   <script>
     document.getElementById('upload').addEventListener('click', (e) => {
       e.preventDefault();
@@ -107,8 +109,6 @@
       }, false);
       reader.readAsDataURL(file);
 
-      document.querySelector('#form').hidden = true;
-
       fetch("/upload", {
         body: formData,
         method: "post"
@@ -116,9 +116,10 @@
       ).then((pathData) => {
         pathData.json()
           .then(pathJson => {
-            if (pathJson.state != 'success') {
-              return console.log('Failed')
+            if (pathJson.status != 'success') {
+              document.querySelector('.error').hidden = false;
             }
+            document.querySelector('#form').hidden = true;
             document.querySelector(`.cont`).hidden = false;
             document.querySelectorAll('.output').forEach(el => {
               fetch(`/convert/${el.id}/${pathJson.path}`).then(image => {
