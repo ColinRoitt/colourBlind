@@ -21,6 +21,14 @@
       align-items: center;
     }
 
+    .preview {
+      padding: 20px;
+    }
+
+    #form_loading {
+      width: 100px;
+    }
+
     @media only screen and (max-width: 900px) {
       img {
         max-width: 90vw;
@@ -43,6 +51,8 @@
   <form id='form' ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
     <input id='file' type="file" name="sampleFile" />
     <input id='upload' type='submit' value='Upload' />
+    <br />
+    <img hidden src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' class="form_loading"></img>
   </form>
 
   <br />
@@ -99,6 +109,8 @@
   <script>
     document.getElementById('upload').addEventListener('click', (e) => {
       e.preventDefault();
+      document.querySelector('#form_loading').hidden = false;
+
       let formData = new FormData();
       let file = document.getElementById('file').files[0];
       formData.append("sampleFile", file);
