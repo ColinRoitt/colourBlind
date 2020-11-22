@@ -19,15 +19,21 @@ Clone, install, and serve. There's a docker file included or you can run nativel
 ### Natively with npm
 `
     git clone https://github.com/ColinRoitt/colourBlind.git
+
     cd colourBlind
+
     npm install
+
     npm run serve
 `
 
 ### With Docker
 `
     git clone https://github.com/ColinRoitt/colourBlind.git
+
     cd colourBlind
+
     docker build -t colourBlind .
+
     docker run -p 3000:3000 colourBlind
 `
