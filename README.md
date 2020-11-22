@@ -12,3 +12,22 @@ We just perform a 2d loop over an image extracting per-pixel RGB hex values, cre
 
 ## I am not a ophthalmologist
 I really don't know anything about eyes or colour blindness, I just do web design. If there are any problems or inaccuracies do get in touch.
+
+## Running this
+Clone, install, and serve. There's a docker file included or you can run natively.
+
+### Natively with npm
+`
+git clone https://github.com/ColinRoitt/colourBlind.git
+cd colourBlind
+npm install
+nom run serve
+`
+
+### With Docker
+`
+git clone https://github.com/ColinRoitt/colourBlind.git
+cd colourBlind
+docker build -t colourBlind .
+docker run -p 3000:3000 colourBlind
+`
