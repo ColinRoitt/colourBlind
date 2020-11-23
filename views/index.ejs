@@ -3,6 +3,7 @@
 
 <head>
   <title><%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />
 
@@ -10,7 +11,7 @@
 </head>
 
 <body>
-  <div class='columns is-mobile notification is-info'>
+  <div class='columns notification is-info'>
     <div class='column is-whole has-text-centered'>
       <div class='header'>
         <h1 class='title'><%= title %></h1>
@@ -18,7 +19,7 @@
       </div>
       <br/><br/>
       <form id='form' ref='uploadForm' id='uploadForm' action='/upload' method='post' encType='multipart/form-data'>
-        <input class='button' id='file' type='file' name='sampleFile' />
+        <input class='upload_file' accept="image/*" id='file' type='file' name='sampleFile' />
         <br/><br/>
         <input class='button is-primary' id='upload' type='submit' value='Upload' />
         <br /><br/>
