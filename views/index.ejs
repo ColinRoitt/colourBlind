@@ -4,66 +4,77 @@
 <head>
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />
+
   <script src='/javascripts/index.js' defer></script>
 </head>
 
 <body>
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
-  <form id='form' ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
-    <input id='file' type="file" name="sampleFile" />
-    <input id='upload' type='submit' value='Upload' />
-    <br />
-    <img hidden src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' class="form_loading"></img>
-  </form>
-
+  <div class='columns is-mobile'>
+    <div class='column is-whole has-text-centered'>
+      <h1 class='title'><%= title %></h1>
+      <p>Welcome to <%= title %></p>
+      <form id='form' ref='uploadForm' id='uploadForm' action='/upload' method='post' encType='multipart/form-data'>
+        <input class='button' id='file' type='file' name='sampleFile' />
+        <input class='button is-link' id='upload' type='submit' value='Upload' />
+        <br />
+        <img src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='form_loading' class='is-hidden'></img>
+      </form>
+    </div>  
+  </div>
+      
   <br />
 
-  <div hidden class='cont'>
-    <div class='preview' id='original'>
-      <h3>Original</h3>
-      <img id='orig'></img>
+  <div id='cont' class='columns has-text-centered is-hidden'>
+    <div class="column">
+      <span class='preview'>
+        <h3>Original</h3>
+        <img id='orig'src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' ></img>
+      </span>
+
+      <span class='preview'>
+        <h3>Protanomaly</h3>
+        <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='protanomaly'></img>
+      </span>
+
+      <span class='preview'>
+        <h3>Protanopia</h3>
+        <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='protanopia'></img>
+      </span>
     </div>
 
-    <div class='preview' id='original'>
-      <h3>Protanomaly</h3>
-      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="protanomaly"></img>
-    </div>
-
-    <div class='preview' id='original'>
-      <h3>Protanopia</h3>
-      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="protanopia"></img>
-    </div>
-
-    <div class='preview' id='original'>
+    <div class="column">
+    <span class='preview'>
       <h3>Deuteranomaly</h3>
-      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="deuteranomaly"></img>
-    </div>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='deuteranomaly'></img>
+    </span>
 
-    <div class='preview' id='original'>
+    <span class='preview'>
       <h3>Deuteranopia</h3>
-      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="deuteranopia"></img>
-    </div>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='deuteranopia'></img>
+    </span>
 
-    <div class='preview' id='original'>
+    <span class='preview'>
       <h3>Tritanomaly</h3>
-      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="tritanomaly"></img>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='tritanomaly'></img>
+    </span>
     </div>
-
-    <div class='preview' id='original'>
+    <div class="column">
+    <span class='preview'>
       <h3>Tritanopia</h3>
-      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="tritanopia"></img>
-    </div>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='tritanopia'></img>
+    </span>
 
-    <div class='preview' id='original'>
+    <span class='preview'>
       <h3>Achromatomaly</h3>
-      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="achromatomaly"></img>
-    </div>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='achromatomaly'></img>
+    </span>
 
-    <div class='preview' id='original'>
+    <span class='preview'>
       <h3>Achromatopsia</h3>
-      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id="achromatopsia"></img>
-    </div>
+      <img class='output' src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='achromatopsia'></img>
+    </span>
+  </div>
   </div>
 
   <div hidden class='error'>Error: Cannot connect to server</div>
