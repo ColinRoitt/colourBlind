@@ -24,10 +24,18 @@ document.getElementById('upload').addEventListener('click', function (e) {
       document.querySelector('#orig').src = pathJson.original;
       document.querySelector('#form').classList.add('is-hidden');
       document.querySelector("#cont").classList.remove('is-hidden');
+      document.querySelector("#mod_orig img").setAttribute('src', pathJson.original);
+      document.querySelector('#orig').addEventListener('click', function () {
+        document.querySelector("#mod_orig").classList.add('is-active');
+      });
       document.querySelectorAll('.output').forEach(function (el) {
         fetch("/convert/".concat(el.id, "/").concat(pathJson.path)).then(function (image) {
           image.json().then(function (imageJson) {
             el.setAttribute('src', imageJson);
+            document.querySelector("#mod_".concat(el.id, " img")).setAttribute('src', imageJson);
+            el.addEventListener('click', function () {
+              document.querySelector("#mod_".concat(el.id)).classList.add('is-active');
+            });
             fetch("/delete/".concat(pathJson.path));
           });
         });
