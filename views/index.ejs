@@ -10,14 +10,18 @@
 </head>
 
 <body>
-  <div class='columns is-mobile'>
+  <div class='columns is-mobile notification is-info'>
     <div class='column is-whole has-text-centered'>
-      <h1 class='title'><%= title %></h1>
-      <p>Welcome to <%= title %></p>
+      <div class='header'>
+        <h1 class='title'><%= title %></h1>
+        <p><span class='has-text-weight-bold is-size-5'>Welcome to <%= title %></span> the tool to refine your colour pallet. Accessibility is important and fortunately more and more people are aware of it. Annoyingly it can be hard to know what colours do and don't work for different people. Simply upload an image below to see how it looks to various types of colour blindness.</p>
+      </div>
+      <br/><br/>
       <form id='form' ref='uploadForm' id='uploadForm' action='/upload' method='post' encType='multipart/form-data'>
         <input class='button' id='file' type='file' name='sampleFile' />
-        <input class='button is-link' id='upload' type='submit' value='Upload' />
-        <br />
+        <br/><br/>
+        <input class='button is-primary' id='upload' type='submit' value='Upload' />
+        <br /><br/>
         <img src='https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif' id='form_loading' class='is-hidden'></img>
       </form>
     </div>  
