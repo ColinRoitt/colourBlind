@@ -1,11 +1,16 @@
 document.getElementById('upload').addEventListener('click', (e) => {
     e.preventDefault();
-    document.querySelector('#form_loading').classList.remove('is-hidden');
-
+    
     let formData = new FormData();
     let file = document.getElementById('file').files[0];
+    if(!file){
+      alert('Please upload an image before continuing');
+      return;
+    }
     formData.append("sampleFile", file);
-
+    
+    document.querySelector('#form_loading').classList.remove('is-hidden');
+    
     fetch("/upload", {
       body: formData,
       method: "post"
