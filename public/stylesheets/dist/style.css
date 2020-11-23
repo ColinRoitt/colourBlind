@@ -10132,3 +10132,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 body {
   padding: 50px;
 }
+
+.preview {
+  cursor: pointer;
+}
