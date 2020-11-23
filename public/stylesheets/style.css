@@ -7705,4 +7705,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 body {
   padding: 50px; }
 
+.preview {
+  cursor: pointer; }
+
 /*# sourceMappingURL=style.css.map */
