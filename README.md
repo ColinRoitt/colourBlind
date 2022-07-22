@@ -1,7 +1,7 @@
 # Welcome to Colour Blind
 My wonderful friends Jack and Jessamy (I only talk to people with J names) brought this idea up one evening so I figured I would make it.
 
-Currently hosted on Heroku at[colourblind.herokuapp.com](https://colourblind.herokuapp.com/).
+Currently hosted on Heroku at [colourblind.herokuapp.com](https://colourblind.herokuapp.com/).
 
 ## But what is it?
 It's a simple website where a user can upload a picture, say a graph in a presentation, and see what it looks like to people with various kinds of colour blindnesses.
@@ -17,7 +17,7 @@ I really don't know anything about eyes or colour blindness, I just do web desig
 Clone, install, and serve. There's a docker file included or you can run natively.
 
 ### Natively with npm
-`
+
     git clone https://github.com/ColinRoitt/colourBlind.git
 
     cd colourBlind
@@ -25,10 +25,9 @@ Clone, install, and serve. There's a docker file included or you can run nativel
     npm install
 
     npm run serve
-`
 
 ### With Docker
-`
+
     git clone https://github.com/ColinRoitt/colourBlind.git
 
     cd colourBlind
@@ -36,4 +35,3 @@ Clone, install, and serve. There's a docker file included or you can run nativel
     docker build -t colourBlind .
 
     docker run -p 3000:3000 colourBlind
-`
