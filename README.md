@@ -1,7 +1,7 @@
 # Welcome to Colour Blind
 My wonderful friends Jack and Jessamy (I only talk to people with J names) brought this idea up one evening so I figured I would make it.
 
-Currently hosted on Heroku at [colourblind.herokuapp.com](https://colourblind.herokuapp.com/).
+~~Currently hosted on Heroku at [colourblind.herokuapp.com](https://colourblind.herokuapp.com/).~~
 
 ## But what is it?
 It's a simple website where a user can upload a picture, say a graph in a presentation, and see what it looks like to people with various kinds of colour blindnesses.
